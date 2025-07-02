@@ -13,7 +13,7 @@ export default function Dashboard() {
   const [reported , setReported] = useState(0);
 
   const data = [
-    { label: 'Manage Users', value: users, icon: <FaUsers />, link: '/all-users' },
+    { label: 'Manage Users', value: users, icon: <FaUsers />, link: '/showUsers' },
     { label: 'Messages', value: messages, icon: <FaComments />, link: '/user-messages' },
     { label: 'Match & Connections', value: connections, icon: <FaUserCheck />, link: '/verified-profiles' },
     { label: 'Subscriptions & Payments', value: subscriptions, icon: <FaImage />, link: '/profile-photos' },
