@@ -1,6 +1,6 @@
 .top-head{
     height: 4rem;
-    background: #718096;
+    background: linear-gradient(to right, #E8385C, #FE8E73);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -47,7 +47,7 @@
     position: fixed;
     top: 4rem;
     left: 0;
-    background: #4a5568;
+    background: linear-gradient(to right, #E8385C, #FE8E73);
     /* background: #9ae5f8; */
     height: 100%;
     overflow-y: auto;
@@ -57,6 +57,9 @@
 }
 .rightNav ul{
     padding-left: 0rem;
+}
+.rightNav ul li{
+    list-style:none;
 }
 .rightNav li a{
     color: white;

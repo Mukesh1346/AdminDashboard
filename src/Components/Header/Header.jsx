@@ -21,14 +21,14 @@ const Header = () => {
             <img src="/log.png" style={{height:50}} alt="" />
             <h2>LuvNestor</h2>
             <div className="bar" onClick={handletoggleBtn}>
-              <i class="fa-solid fa-bars"></i>
+              <i className="fa-solid fa-bars"></i>
             </div>
           </div>
           <div className="left ">
-            <a href="https://www.smartpartsexports.com/" className='bg-theme' target="_blank">
+            <a href="/" className='bg-theme' target="_blank">
              
-            Our Website,,,,
-            <i class="fa-solid fa-globe"></i>
+            Our Website,
+            <i className="fa-solid fa-globe"></i>
             </a>
           </div>
 
