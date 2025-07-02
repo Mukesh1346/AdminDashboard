@@ -26,7 +26,7 @@
     font-size: 1.2rem;
 }
 .top-head .left a{
-    background: white;
+    background:#599;
     color: var(--color-main-light);
     padding: 0.2rem 0.5rem;
     border-radius: 5px;
@@ -41,6 +41,9 @@
     border-radius: 5px;
     cursor: pointer;
     
+}
+.rightNav ul li i {
+    padding-right: 10px;
 }
 
 .rightNav{
