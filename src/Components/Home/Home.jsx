@@ -6,6 +6,12 @@ import Header from '../Header/Header'
 import Dashboard from '../../Pages/Dashboard/Dashboard'
 import Banner from '../../Pages/Banner/Banner'
 import ShowUser from '../../Pages/ShowUsers/Page'
+import MessageUsers from '../../Pages/MessageUsers/UserList'
+import Conversations from '../../Pages/MessageUsers/Conversation'
+import ChatDetails from '../../Pages/MessageUsers/ChatDetails'
+import SubscriptionDetail from '../../Pages/SubscriptionDetails/page'
+import ReportedUsers from '../../Pages/ReportedUsers/page'
+import CoupleMeetingsTable from '../../Pages/MeetingRecordsTable/page'
 
 // import AllCategory from '../../Pages/Category/AllCategory'
 // import AddCategory from '../../Pages/Category/AddCategory'
@@ -33,6 +39,12 @@ export default function Home() {
           <Route path="/dashboard" element={<Dashboard/>} />
           <Route path="/banner" element={<Banner/>} />
           <Route path="/showUsers" element={<ShowUser/>} />
+          <Route path="/message-users" element={<MessageUsers/>}/>    
+          <Route path="/conversations/:id" element={<Conversations/>}/>    
+          <Route path="/chat/:user1/:user2" element={<ChatDetails/>} />    
+          <Route path="/subscription-details" element={<SubscriptionDetail/>}/>    
+          <Route path="/reported-list" element={<ReportedUsers/>}/>    
+          <Route path="/meetingrecord-table" element={<CoupleMeetingsTable/>}/>    
           
           {/* Uncomment when components are ready */}
           {/* <Route path="/all-category" element={<AllCategory />} />

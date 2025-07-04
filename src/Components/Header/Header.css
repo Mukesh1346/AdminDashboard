@@ -1,4 +1,5 @@
 .top-head{
+    z-index: 999;
     height: 4rem;
     background: linear-gradient(to right, #E8385C, #FE8E73);
     display: flex;

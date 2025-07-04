@@ -14,11 +14,11 @@ export default function Dashboard() {
 
   const data = [
     { label: 'Manage Users', value: users, icon: <FaUsers />, link: '/showUsers' },
-    { label: 'Messages', value: messages, icon: <FaComments />, link: '/user-messages' },
-    { label: 'Match & Connections', value: connections, icon: <FaUserCheck />, link: '/verified-profiles' },
-    { label: 'Subscriptions & Payments', value: subscriptions, icon: <FaImage />, link: '/profile-photos' },
+    { label: 'Messages', value: messages, icon: <FaComments />, link: '/message-users' },
+    { label: 'Meeting Records', value: connections, icon: <FaUserCheck />, link: '/meetingrecord-table' },
+    { label: 'Subscriptions & Payments', value: subscriptions, icon: <FaImage />, link: '/subscription-details' },
     { label: 'Notifications', value: notifications, icon: <FaUserPlus />, link: '/new-signups' },
-    { label: 'Reported Profiles', value: reported, icon: <FaHeart />, link: '/all-matches' },
+    { label: 'Reported Profiles', value: reported, icon: <FaHeart />, link: '/reported-list' },
   ];
   
 
