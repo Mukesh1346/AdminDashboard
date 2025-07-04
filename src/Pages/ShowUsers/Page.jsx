@@ -1,4 +1,5 @@
-import React from 'react';
+// UserDetailsTableWithModal.jsx
+import React, { useState } from 'react';
 import {
   useTable,
   useSortBy,
@@ -7,16 +8,15 @@ import {
 } from 'react-table';
 import { useNavigate } from 'react-router-dom';
 
-const DefaultColumnFilter = ({
-  column: { filterValue, setFilter, Header }
-}) => (
+const DefaultColumnFilter = ({ column: { filterValue, setFilter, Header } }) => (
   <input
     style={{
       width: '100%',
-      padding: '6px',
-      fontSize: '12px',
+      padding: '8px',
+      fontSize: '13px',
       border: '1px solid #ccc',
-      borderRadius: '4px'
+      borderRadius: '6px',
+      background: '#f9f9f9'
     }}
     placeholder={`Search ${Header}`}
     value={filterValue || ''}
@@ -24,18 +24,17 @@ const DefaultColumnFilter = ({
   />
 );
 
-const GenderColumnFilter = ({
-  column: { filterValue, setFilter }
-}) => (
+const GenderColumnFilter = ({ column: { filterValue, setFilter } }) => (
   <select
     value={filterValue || ''}
     onChange={e => setFilter(e.target.value || undefined)}
     style={{
       width: '100%',
-      padding: '6px',
-      fontSize: '12px',
+      padding: '8px',
+      fontSize: '13px',
       border: '1px solid #ccc',
-      borderRadius: '4px'
+      borderRadius: '6px',
+      background: '#f9f9f9'
     }}
   >
     <option value="">All</option>
@@ -44,72 +43,70 @@ const GenderColumnFilter = ({
   </select>
 );
 
-export default function Banner() {
+export default function Page() {
+  const [show, setShow] = useState(false);
   const navigate = useNavigate();
 
-  const data = React.useMemo(
-    () => [
-      { serial: 1, name: "Suraj", age: 69, gender: "Male", marital: "Single" },
-      { serial: 2, name: "Anna Smith", age: 34, gender: "Female", marital: "Married" },
-      { serial: 3, name: "Raj Patel", age: 30, gender: "Male", marital: "Married" },
-      { serial: 4, name: "John Doe", age: 28, gender: "Male", marital: "Single" },
-      { serial: 5, name: "Lisa Ray", age: 25, gender: "Female", marital: "Single" },
-      { serial: 6, name: "Amit Sharma", age: 32, gender: "Male", marital: "Married" },
-      { serial: 7, name: "Meera Jain", age: 27, gender: "Female", marital: "Single" },
-      { serial: 8, name: "Karan Singh", age: 35, gender: "Male", marital: "Single" },
-      { serial: 9, name: "Neha Verma", age: 29, gender: "Female", marital: "Married" },
-      { serial: 10, name: "Deepak Das", age: 31, gender: "Male", marital: "Single" },
-      { serial: 11, name: "Suraj", age: 69, gender: "Male", marital: "Single" },
-      { serial: 12, name: "Anna Smith", age: 34, gender: "Female", marital: "Married" },
-      { serial: 13, name: "Raj Patel", age: 30, gender: "Male", marital: "Married" },
-      { serial: 14, name: "John Doe", age: 28, gender: "Male", marital: "Single" },
-      { serial: 15, name: "Lisa Ray", age: 25, gender: "Female", marital: "Single" },
-      { serial: 16, name: "Amit Sharma", age: 32, gender: "Male", marital: "Married" },
-      { serial: 17, name: "Meera Jain", age: 27, gender: "Female", marital: "Single" },
-      { serial: 18, name: "Karan Singh", age: 35, gender: "Male", marital: "Single" },
-      { serial: 19, name: "Neha Verma", age: 29, gender: "Female", marital: "Married" },
-      { serial: 20, name: "Deepak Das", age: 31, gender: "Male", marital: "Single" },
-    ],
-    []
-  );
+  const user = {
+    id: 101,
+    name: 'Mukesh Sharma',
+    email: 'mukesh@example.com',
+    gender: 'Male',
+    aadhaar: '1234-5678-9012',
+    bio: 'Friendly and outgoing individual who enjoys travel and food.',
+    communicationType: 'Phone, Chat',
+    diet: 'Veg',
+    relationshipView: 'Serious',
+    maritalStatus: 'Single',
+    dob: '1995-07-15',
+    religion: 'Hindu',
+    city: 'Delhi',
+    hobbies: 'Reading, Movies, Gym',
+    interestedIn: 'Women',
+    height: "5'9\"",
+    weight: '70kg',
+    figure: 'Athletic',
+    hairColor: 'Black',
+    eyeColor: 'Brown',
+    photos: [
+      '/user9.jpeg',
+      '/user.jpeg',
+      '/user8.jpeg',
+      '/user6.jpeg',
+      '/user5.jpeg',
+      '/user4.jpeg'
+    ]
+  };
 
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "Serial No.",
-        accessor: "serial",
-        Filter: DefaultColumnFilter
-      },
-      {
-        Header: "Name",
-        accessor: "name",
-        Filter: DefaultColumnFilter
-      },
-      {
-        Header: "Age",
-        accessor: "age",
-        Filter: DefaultColumnFilter
-      },
-      {
-        Header: "Gender",
-        accessor: "gender",
-        Filter: GenderColumnFilter
-      },
-      {
-        Header: "Marital Status",
-        accessor: "marital",
-        Filter: DefaultColumnFilter
-      }
-    ],
-    []
-  );
+  const data = React.useMemo(() => [
+    { id: 1, name: 'Suraj', email: 'suraj@example.com', photo: 'https://i.pinimg.com/736x/f6/99/27/f69927083663ca688fd81a34bcbed40e.jpg', gender: 'Male', aadhaar: '1234-5678-9012' },
+    { id: 2, name: 'Anna Smith', email: 'anna@example.com', photo: 'https://i.pinimg.com/736x/f2/6b/b7/f26bb762110fb484bf04040edec86b3b.jpg', gender: 'Female', aadhaar: '2345-6789-0123' },
+    { id: 3, name: 'Raj Patel', email: 'raj@example.com', photo: 'https://i.pinimg.com/736x/95/c0/b0/95c0b00adf7fd5384e322e102fb41c62.jpg', gender: 'Male', aadhaar: '3456-7890-1234' },
+    { id: 4, name: 'Lisa Ray', email: 'lisa@example.com', photo: 'https://i.pinimg.com/736x/af/5e/51/af5e516ad10b098cc399eae47fd18148.jpg', gender: 'Female', aadhaar: '4567-8901-2345' }
+  ], []);
 
-  const defaultColumn = React.useMemo(
-    () => ({
-      Filter: DefaultColumnFilter
-    }),
-    []
-  );
+  const columns = React.useMemo(() => [
+    { Header: 'User ID', accessor: 'id', Filter: DefaultColumnFilter },
+    { Header: 'Name', accessor: 'name', Filter: DefaultColumnFilter },
+    { Header: 'Email', accessor: 'email', Filter: DefaultColumnFilter },
+    {
+      Header: 'Photo', accessor: 'photo', disableFilters: true,
+      Cell: ({ value }) => <img src={value} alt="Profile" width={40} height={40} style={{ borderRadius: '50%' }} />
+    },
+    { Header: 'Gender', accessor: 'gender', Filter: GenderColumnFilter },
+    { Header: 'Aadhaar', accessor: 'aadhaar', Filter: DefaultColumnFilter },
+    {
+      Header: 'Actions', accessor: 'actions', disableFilters: true,
+      Cell: ({ row }) => (
+        <button
+          style={{ padding: '6px 12px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '13px' }}
+          onClick={() => setShow(true)}
+        >View More</button>
+      )
+    }
+  ], []);
+
+  const defaultColumn = React.useMemo(() => ({ Filter: DefaultColumnFilter }), []);
 
   const {
     getTableProps,
@@ -128,181 +125,126 @@ export default function Banner() {
     pageCount,
     setPageSize,
     state: { pageIndex, pageSize }
-  } = useTable(
-    {
-      columns,
-      data,
-      defaultColumn,
-      initialState: { pageIndex: 0, pageSize: 5 }
-    },
-    useFilters,
-    useSortBy,
-    usePagination
-  );
+  } = useTable({
+    columns,
+    data,
+    defaultColumn,
+    initialState: { pageIndex: 0, pageSize: 5 }
+  }, useFilters, useSortBy, usePagination);
 
   const handleSort = (columnId, direction) => {
-    setSortBy([{ id: columnId, desc: direction === "desc" }]);
+    setSortBy([{ id: columnId, desc: direction === 'desc' }]);
   };
 
   return (
-    <div style={{ margin: "96px 0px 0px 261px", width: "82%" }}>
-      {/* Back & Reset Buttons */}
-      <div style={{ marginBottom: "20px" }}>
-        <button
-          onClick={() => navigate(-1)}
-          style={{
-            padding: "8px 16px",
-            backgroundColor: "#007bff",
-            color: "#fff",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-            marginRight: "10px"
-          }}
-        >
-          ← Back
-        </button>
-        <button
-          onClick={() => {
-            setAllFilters([]);
-            setSortBy([]);
-            gotoPage(0);
-          }}
-          style={{
-            padding: "8px 16px",
-            backgroundColor: "#28a745",
-            color: "#fff",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer"
-          }}
-        >
-          Reset Filters & Sort
-        </button>
+    <div style={{ margin: '96px 0px 0px 261px', width: '82%' }}>
+      <div style={{ marginBottom: '20px', display: 'flex', gap: '10px' }}>
+        <button onClick={() => navigate(-1)} style={{ padding: '8px 16px', backgroundColor: '#343a40', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>← Back</button>
+        <button onClick={() => { setAllFilters([]); setSortBy([]); gotoPage(0); }} style={{ padding: '8px 16px', backgroundColor: '#28a745', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>Reset Filters</button>
       </div>
 
-      {/* Table */}
-      <table
-        {...getTableProps()}
-        style={{
-          width: "100%",
-          borderCollapse: "collapse",
-          border: "1px solid #ddd",
-          fontFamily: "Arial, sans-serif",
-          fontSize: "14px"
-        }}
-      >
-        <thead>
-          {headerGroups.map(headerGroup => (
-            <React.Fragment key={headerGroup.id}>
-              <tr {...headerGroup.getHeaderGroupProps()} style={{ background: "#f2f2f2" }}>
-                {headerGroup.headers.map(column => (
-                  <th
-                    key={column.id}
-                    {...column.getHeaderProps()}
-                    style={{
-                      border: "1px solid #ddd",
-                      padding: "10px",
-                      textAlign: "left"
-                    }}
-                  >
-                    <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                      <span>{column.render("Header")}</span>
-                      <div>
-                        <button
-                          onClick={() => handleSort(column.id, "asc")}
-                          style={{
-                            fontSize: "12px",
-                            background: "transparent",
-                            border: "none",
-                            cursor: "pointer"
-                          }}
-                          title="Sort Ascending"
-                        >
-                          🔼
-                        </button>
-                        <button
-                          onClick={() => handleSort(column.id, "desc")}
-                          style={{
-                            fontSize: "12px",
-                            background: "transparent",
-                            border: "none",
-                            cursor: "pointer"
-                          }}
-                          title="Sort Descending"
-                        >
-                          🔽
-                        </button>
+      <div style={{ border: '1px solid #ddd', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 10px rgba(0,0,0,0.05)' }}>
+        <table {...getTableProps()} style={{ width: '100%', borderCollapse: 'collapse', backgroundColor: '#fff' }}>
+          <thead>
+            {headerGroups.map((headerGroup, i) => (
+              <React.Fragment key={i}>
+                <tr {...headerGroup.getHeaderGroupProps()} style={{ background: '#f1f3f5' }}>
+                  {headerGroup.headers.map((column, idx) => (
+                    <th key={idx} style={{ padding: '12px', fontWeight: 'bold', fontSize: '14px', borderBottom: '1px solid #ccc' }}>
+                      {column.render('Header')}
+                      {column.canSort && (
+                        <span>
+                          <button onClick={() => handleSort(column.id, 'asc')} style={{ border: 'none' }}>🔼</button>
+                          <button onClick={() => handleSort(column.id, 'desc')} style={{ border: 'none' }}>🔽</button>
+                        </span>
+                      )}
+                    </th>
+                  ))}
+                </tr>
+                <tr style={{ backgroundColor: '#fafafa' }}>
+                  {headerGroup.headers.map((column, idx) => (
+                    <th key={idx} style={{ padding: '8px' }}>{column.canFilter ? column.render('Filter') : null}</th>
+                  ))}
+                </tr>
+              </React.Fragment>
+            ))}
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {page.map((row, i) => {
+              prepareRow(row);
+              return (
+                <tr key={i} style={{ borderBottom: '1px solid #eee', backgroundColor: i % 2 === 0 ? '#fff' : '#f9f9f9' }}>
+                  {row.cells.map((cell, idx) => (
+                    <td key={idx} style={{ padding: '12px' }}>{cell.render('Cell')}</td>
+                  ))}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+
+        {show && (
+          <div className="modal fade show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+            <div className="modal-dialog modal-dialog-centered modal-xl" style={{ width: '80vw', maxWidth: 'none', height: '80vh' }}>
+              <div className="modal-content" style={{ height: '100%' }}>
+                <div className="modal-header">
+                  <h5 className="modal-title">User Profile</h5>
+                  <button type="button" className="btn-close" aria-label="Close" onClick={() => setShow(false)}></button>
+                </div>
+                <div className="modal-body overflow-auto">
+                  <div className="row g-4">
+                    <div className="col-md-4">
+                      <img src={user.photos[0]} alt="Large" className="img-fluid rounded mb-3" style={{ maxHeight: '50vh', objectFit: 'cover', width: '100%' }} />
+                      <div className="d-flex gap-2 overflow-auto">
+                        {user.photos.map((photo, index) => (
+                          <img key={index} src={photo} alt={`Thumbnail ${index}`} className="img-thumbnail" style={{ width: '80px', height: '80px', objectFit: 'cover' }} />
+                        ))}
                       </div>
                     </div>
-                  </th>
-                ))}
-              </tr>
-              <tr>
-                {headerGroup.headers.map(column => (
-                  <th
-                    key={column.id + "_filter"}
-                    style={{
-                      border: "1px solid #ddd",
-                      padding: "6px",
-                      backgroundColor: "#fafafa"
-                    }}
-                  >
-                    {column.canFilter ? column.render("Filter") : null}
-                  </th>
-                ))}
-              </tr>
-            </React.Fragment>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {page.map((row, i) => {
-            prepareRow(row);
-            return (
-              <tr
-                key={row.id}
-                {...row.getRowProps()}
-                style={{
-                  backgroundColor: i % 2 === 0 ? "#fff" : "#f9f9f9"
-                }}
-              >
-                {row.cells.map(cell => (
-                  <td
-                    key={cell.column.id}
-                    {...cell.getCellProps()}
-                    style={{
-                      border: "1px solid #ddd",
-                      padding: "10px"
-                    }}
-                  >
-                    {cell.render("Cell")}
-                  </td>
-                ))}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+                    <div className="col-md-8">
+                      <div className="row">
+                        <div className="col-sm-6 mb-2"><strong>ID:</strong> {user.id}</div>
+                        <div className="col-sm-6 mb-2"><strong>Name:</strong> {user.name}</div>
+                        <div className="col-sm-6 mb-2"><strong>Email:</strong> {user.email}</div>
+                        <div className="col-sm-6 mb-2"><strong>Gender:</strong> {user.gender}</div>
+                        <div className="col-sm-6 mb-2"><strong>Aadhaar:</strong> {user.aadhaar}</div>
+                        <div className="col-sm-6 mb-2"><strong>DOB:</strong> {user.dob}</div>
+                        <div className="col-sm-6 mb-2"><strong>Religion:</strong> {user.religion}</div>
+                        <div className="col-sm-6 mb-2"><strong>City:</strong> {user.city}</div>
+                        <div className="col-sm-6 mb-2"><strong>Marital Status:</strong> {user.maritalStatus}</div>
+                        <div className="col-sm-6 mb-2"><strong>Communication:</strong> {user.communicationType}</div>
+                        <div className="col-sm-6 mb-2"><strong>Diet:</strong> {user.diet}</div>
+                        <div className="col-sm-6 mb-2"><strong>Relationship View:</strong> {user.relationshipView}</div>
+                        <div className="col-sm-6 mb-2"><strong>Interested In:</strong> {user.interestedIn}</div>
+                        <div className="col-sm-6 mb-2"><strong>Height:</strong> {user.height}</div>
+                        <div className="col-sm-6 mb-2"><strong>Weight:</strong> {user.weight}</div>
+                        <div className="col-sm-6 mb-2"><strong>Figure:</strong> {user.figure}</div>
+                        <div className="col-sm-6 mb-2"><strong>Hair Color:</strong> {user.hairColor}</div>
+                        <div className="col-sm-6 mb-2"><strong>Eye Color:</strong> {user.eyeColor}</div>
+                        <div className="col-12 mt-3"><strong>Bio:</strong><p className="text-muted">{user.bio}</p></div>
+                        <div className="col-12"><strong>Hobbies:</strong> {user.hobbies}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="modal-footer">
+                  <button className="btn btn-secondary" onClick={() => setShow(false)}>Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
 
-      {/* Pagination Controls */}
-      <div style={{ marginTop: "20px", display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-        <button className='btn btn-secondary' onClick={() => gotoPage(0)} disabled={!canPreviousPage}>⏮ First</button>
-        <button className='btn btn-secondary' onClick={() => previousPage()} disabled={!canPreviousPage}>← Prev</button>
-        <button className='btn btn-secondary' onClick={() => nextPage()} disabled={!canNextPage}>Next →</button>
-        <button className='btn btn-secondary' onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>Last ⏭</button>
-
-        <span>
-          | Page <strong>{pageIndex + 1} of {pageOptions.length}</strong>
-        </span>
-
-        <select
-          value={pageSize}
-          onChange={e => setPageSize(Number(e.target.value))}
-        >
+      <div style={{ marginTop: '20px', display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+        <button className="btn btn-outline-dark" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>⏮ First</button>
+        <button className="btn btn-outline-dark" onClick={() => previousPage()} disabled={!canPreviousPage}>← Prev</button>
+        <button className="btn btn-outline-dark" onClick={() => nextPage()} disabled={!canNextPage}>Next →</button>
+        <button className="btn btn-outline-dark" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>Last ⏭</button>
+        <span>| Page <strong>{pageIndex + 1} of {pageOptions.length}</strong></span>
+        <select value={pageSize} onChange={e => setPageSize(Number(e.target.value))} style={{ padding: '6px', borderRadius: '6px', border: '1px solid #ccc' }}>
           {[5, 10, 20, 50].map(size => (
-            <option key={size} value={size}>
-              Show {size}
-            </option>
+            <option key={size} value={size}>Show {size}</option>
           ))}
         </select>
       </div>

@@ -1,0 +1,235 @@
+import React from 'react';
+import {
+  useTable,
+  useSortBy,
+  useFilters,
+  usePagination
+} from 'react-table';
+import { useNavigate } from 'react-router-dom';
+import { users } from '../data/mockData';
+
+const DefaultColumnFilter = ({
+  column: { filterValue, setFilter, Header }
+}) => (
+  <input
+    style={{
+      width: '100%',
+      padding: '6px',
+      fontSize: '12px',
+      border: '1px solid #ccc',
+      borderRadius: '4px'
+    }}
+    placeholder={`Search ${Header}`}
+    value={filterValue || ''}
+    onChange={e => setFilter(e.target.value || undefined)}
+  />
+);
+
+const GenderColumnFilter = ({
+  column: { filterValue, setFilter }
+}) => (
+  <select
+    value={filterValue || ''}
+    onChange={e => setFilter(e.target.value || undefined)}
+    style={{
+      width: '100%',
+      padding: '6px',
+      fontSize: '12px',
+      border: '1px solid #ccc',
+      borderRadius: '4px'
+    }}
+  >
+    <option value="">All</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+  </select>
+);
+
+export default function UserTable() {
+  const navigate = useNavigate();
+
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: "Serial No.",
+        accessor: "serial",
+        Filter: DefaultColumnFilter
+      },
+      {
+        Header: "Name",
+        accessor: "name",
+        Filter: DefaultColumnFilter
+      },
+      {
+        Header: "Age",
+        accessor: "age",
+        Filter: DefaultColumnFilter
+      },
+      {
+        Header: "Gender",
+        accessor: "gender",
+        Filter: GenderColumnFilter
+      },
+      {
+        Header: "Marital Status",
+        accessor: "marital",
+        Filter: DefaultColumnFilter
+      },
+      {
+        Header: "Messages",
+        accessor: "actions",
+        disableFilters: true,
+        Cell: ({ row }) => (
+          <button
+            onClick={() => navigate(`/conversations/${row.original.serial}`)}
+            style={{
+              padding: '5px 10px',
+              backgroundColor: '#007bff',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer'
+            }}
+          >
+            Messages
+          </button>
+        )
+      }
+    ],
+    [navigate]
+  );
+
+  const defaultColumn = React.useMemo(() => ({
+    Filter: DefaultColumnFilter
+  }), []);
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    page,
+    prepareRow,
+    setAllFilters,
+    setSortBy,
+    gotoPage,
+    nextPage,
+    previousPage,
+    canNextPage,
+    canPreviousPage,
+    pageOptions,
+    pageCount,
+    setPageSize,
+    state: { pageIndex, pageSize }
+  } = useTable(
+    {
+      columns,
+      data: users,
+      defaultColumn,
+      initialState: { pageIndex: 0, pageSize: 5 }
+    },
+    useFilters,
+    useSortBy,
+    usePagination
+  );
+
+  const handleSort = (columnId, direction) => {
+    setSortBy([{ id: columnId, desc: direction === "desc" }]);
+  };
+
+  return (
+    <div style={{ margin: "96px 0px 0px 261px", width: "82%" }}>
+      <div style={{ marginBottom: "20px" }}>
+        <button onClick={() => navigate(-1)} style={{
+          padding: "8px 16px", backgroundColor: "#007bff", color: "#fff",
+          border: "none", borderRadius: "4px", cursor: "pointer", marginRight: "10px"
+        }}>← Back</button>
+        <button onClick={() => {
+          setAllFilters([]);
+          setSortBy([]);
+          gotoPage(0);
+        }} style={{
+          padding: "8px 16px", backgroundColor: "#28a745", color: "#fff",
+          border: "none", borderRadius: "4px", cursor: "pointer"
+        }}>Reset Filters & Sort</button>
+      </div>
+
+      <table {...getTableProps()} style={{
+        width: "100%", borderCollapse: "collapse", border: "1px solid #ddd",
+        fontFamily: "Arial, sans-serif", fontSize: "14px"
+      }}>
+        <thead>
+          {headerGroups.map(headerGroup => (
+            <React.Fragment key={headerGroup.id}>
+              <tr {...headerGroup.getHeaderGroupProps()} style={{ background: "#f2f2f2" }}>
+                {headerGroup.headers.map(column => (
+                  <th key={column.id} {...column.getHeaderProps()} style={{
+                    border: "1px solid #ddd", padding: "10px", textAlign: "left"
+                  }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                      <span>{column.render("Header")}</span>
+                      {!column.disableSortBy && (
+                        <div>
+                          <button onClick={() => handleSort(column.id, "asc")} style={{
+                            fontSize: "12px", background: "transparent", border: "none", cursor: "pointer"
+                          }}>🔼</button>
+                          <button onClick={() => handleSort(column.id, "desc")} style={{
+                            fontSize: "12px", background: "transparent", border: "none", cursor: "pointer"
+                          }}>🔽</button>
+                        </div>
+                      )}
+                    </div>
+                  </th>
+                ))}
+              </tr>
+              <tr>
+                {headerGroup.headers.map(column => (
+                  <th key={column.id + "_filter"} style={{
+                    border: "1px solid #ddd", padding: "6px", backgroundColor: "#fafafa"
+                  }}>
+                    {column.canFilter ? column.render("Filter") : null}
+                  </th>
+                ))}
+              </tr>
+            </React.Fragment>
+          ))}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {page.map((row, i) => {
+            prepareRow(row);
+            return (
+              <tr key={row.id} {...row.getRowProps()} style={{
+                backgroundColor: i % 2 === 0 ? "#fff" : "#f9f9f9"
+              }}>
+                {row.cells.map(cell => (
+                  <td key={cell.column.id} {...cell.getCellProps()} style={{
+                    border: "1px solid #ddd", padding: "10px"
+                  }}>
+                    {cell.render("Cell")}
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+
+      <div style={{
+        marginTop: "20px", display: "flex", alignItems: "center",
+        gap: "10px", flexWrap: "wrap"
+      }}>
+        <button className='btn btn-secondary' onClick={() => gotoPage(0)} disabled={!canPreviousPage}>⏮ First</button>
+        <button className='btn btn-secondary' onClick={() => previousPage()} disabled={!canPreviousPage}>← Prev</button>
+        <button className='btn btn-secondary' onClick={() => nextPage()} disabled={!canNextPage}>Next →</button>
+        <button className='btn btn-secondary' onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>Last ⏭</button>
+
+        <span>| Page <strong>{pageIndex + 1} of {pageOptions.length}</strong></span>
+
+        <select value={pageSize} onChange={e => setPageSize(Number(e.target.value))}>
+          {[5, 10, 20, 50].map(size => (
+            <option key={size} value={size}>Show {size}</option>
+          ))}
+        </select>
+      </div>
+    </div>
+  );
+}
