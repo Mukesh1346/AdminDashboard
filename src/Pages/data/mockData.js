@@ -1,7 +1,7 @@
 export const users = [
-    { serial: 1, name: "Suraj", gender: "Male", age: 25, marital: "Single" },
-    { serial: 2, name: "Anna", gender: "Female", age: 23, marital: "Single" },
-    { serial: 3, name: "Ravi", gender: "Male", age: 30, marital: "Married" },
+    { serial: 1, name: "Suraj", gender: "Male", age: 25, marital: "Single", aadhaar: "1234-5678-9101"  },
+    { serial: 2, name: "Anna", gender: "Female", age: 23, marital: "Single" , aadhaar: "1234-5678-8881" },
+    { serial: 3, name: "Ravi", gender: "Male", age: 30, marital: "Married", aadhaar: "1234-5678-9175"  },
   ];
   
   export const messages = {
