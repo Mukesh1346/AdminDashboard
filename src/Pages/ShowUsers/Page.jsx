@@ -1,4 +1,3 @@
-// UserDetailsTableWithModal.jsx
 import React, { useState } from 'react';
 import {
   useTable,
@@ -49,7 +48,7 @@ export default function Page() {
 
   const user = {
     id: 101,
-    name: 'Mukesh Sharma',
+    name: 'Lakshita Sharma',
     email: 'mukesh@example.com',
     gender: 'Male',
     aadhaar: '1234-5678-9012',
@@ -68,6 +67,7 @@ export default function Page() {
     figure: 'Athletic',
     hairColor: 'Black',
     eyeColor: 'Brown',
+    phone: "7823675483",
     photos: [
       '/user9.jpeg',
       '/user.jpeg',
@@ -78,33 +78,77 @@ export default function Page() {
     ]
   };
 
-  const data = React.useMemo(() => [
-    { id: 1, name: 'Suraj', email: 'suraj@example.com', photo: 'https://i.pinimg.com/736x/f6/99/27/f69927083663ca688fd81a34bcbed40e.jpg', gender: 'Male', aadhaar: '1234-5678-9012' },
-    { id: 2, name: 'Anna Smith', email: 'anna@example.com', photo: 'https://i.pinimg.com/736x/f2/6b/b7/f26bb762110fb484bf04040edec86b3b.jpg', gender: 'Female', aadhaar: '2345-6789-0123' },
-    { id: 3, name: 'Raj Patel', email: 'raj@example.com', photo: 'https://i.pinimg.com/736x/95/c0/b0/95c0b00adf7fd5384e322e102fb41c62.jpg', gender: 'Male', aadhaar: '3456-7890-1234' },
-    { id: 4, name: 'Lisa Ray', email: 'lisa@example.com', photo: 'https://i.pinimg.com/736x/af/5e/51/af5e516ad10b098cc399eae47fd18148.jpg', gender: 'Female', aadhaar: '4567-8901-2345' }
+  const initialData = React.useMemo(() => [ 
+    { id: 1, name: 'Suraj', email: 'suraj@example.com', photo: 'https://i.pinimg.com/736x/f6/99/27/f69927083663ca688fd81a34bcbed40e.jpg', gender: 'Male', aadhaar: '1234-5678-9012', isActive: true  , active: "Yes" },
+    { id: 2, name: 'Anna Smith', email: 'anna@example.com', photo: 'https://i.pinimg.com/736x/f2/6b/b7/f26bb762110fb484bf04040edec86b3b.jpg', gender: 'Female', aadhaar: '2345-6789-0123', isActive: false , active: "No" },
+    { id: 3, name: 'Raj Patel', email: 'raj@example.com', photo: 'https://i.pinimg.com/736x/95/c0/b0/95c0b00adf7fd5384e322e102fb41c62.jpg', gender: 'Male', aadhaar: '3456-7890-1234', isActive: true  , active: "No"},
+    { id: 4, name: 'Lisa Ray', email: 'lisa@example.com', photo: 'https://i.pinimg.com/736x/af/5e/51/af5e516ad10b098cc399eae47fd18148.jpg', gender: 'Female', aadhaar: '4567-8901-2345', isActive: false , active: "Yes" }
   ], []);
+
+  const [userData, setUserData] = useState(initialData);
 
   const columns = React.useMemo(() => [
     { Header: 'User ID', accessor: 'id', Filter: DefaultColumnFilter },
     { Header: 'Name', accessor: 'name', Filter: DefaultColumnFilter },
     { Header: 'Email', accessor: 'email', Filter: DefaultColumnFilter },
     {
-      Header: 'Photo', accessor: 'photo', disableFilters: true,
+      Header: 'Photo',
+      accessor: 'photo',
+      disableFilters: true,
       Cell: ({ value }) => <img src={value} alt="Profile" width={40} height={40} style={{ borderRadius: '50%' }} />
     },
     { Header: 'Gender', accessor: 'gender', Filter: GenderColumnFilter },
     { Header: 'Aadhaar', accessor: 'aadhaar', Filter: DefaultColumnFilter },
     {
-      Header: 'Actions', accessor: 'actions', disableFilters: true,
+      Header: 'Status',
+      accessor: 'isActive',
+      disableFilters: true,
+      Cell: ({ row }) => {
+        const isActive = row.original.isActive;
+        return (
+          <button
+            style={{
+              padding: '6px 12px',
+              backgroundColor: isActive ? '#28a745' : '#dc3545',
+              color: 'white',
+              border: 'none',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              fontSize: '13px'
+            }}
+            onClick={() => {
+              const updated = userData.map(user =>
+                user.id === row.original.id ? { ...user, isActive: !user.isActive } : user
+              );
+              setUserData(updated);
+            }}
+          >
+            {isActive ? 'Varified' : 'Not-varified'}
+          </button>
+        );
+      }
+    },
+    {
+      Header: 'User-details',
+      accessor: 'actions',
+      disableFilters: true,
       Cell: ({ row }) => (
         <button
-          style={{ padding: '6px 12px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '13px' }}
+          style={{
+            padding: '6px 12px',
+            backgroundColor: '#007bff',
+            color: 'white',
+            border: 'none',
+            borderRadius: '6px',
+            cursor: 'pointer',
+            fontSize: '13px'
+          }}
           onClick={() => setShow(true)}
         >View More</button>
       )
-    }
-  ], []);
+    },
+     { Header: 'Active', accessor: 'active', Filter: DefaultColumnFilter },
+  ], [userData]);
 
   const defaultColumn = React.useMemo(() => ({ Filter: DefaultColumnFilter }), []);
 
@@ -127,7 +171,7 @@ export default function Page() {
     state: { pageIndex, pageSize }
   } = useTable({
     columns,
-    data,
+    data: userData,
     defaultColumn,
     initialState: { pageIndex: 0, pageSize: 5 }
   }, useFilters, useSortBy, usePagination);
@@ -203,8 +247,8 @@ export default function Page() {
                     </div>
                     <div className="col-md-8">
                       <div className="row">
+                        <div className="col-sm-6 mb-2 text-warning"><strong>Name:</strong> {user.name}</div>
                         <div className="col-sm-6 mb-2"><strong>ID:</strong> {user.id}</div>
-                        <div className="col-sm-6 mb-2"><strong>Name:</strong> {user.name}</div>
                         <div className="col-sm-6 mb-2"><strong>Email:</strong> {user.email}</div>
                         <div className="col-sm-6 mb-2"><strong>Gender:</strong> {user.gender}</div>
                         <div className="col-sm-6 mb-2"><strong>Aadhaar:</strong> {user.aadhaar}</div>
@@ -223,12 +267,15 @@ export default function Page() {
                         <div className="col-sm-6 mb-2"><strong>Eye Color:</strong> {user.eyeColor}</div>
                         <div className="col-12 mt-3"><strong>Bio:</strong><p className="text-muted">{user.bio}</p></div>
                         <div className="col-12"><strong>Hobbies:</strong> {user.hobbies}</div>
+                        <div className="col-12"><strong>Phone No:</strong> {user.phone}</div>
+                        <button className='btn btn-danger w-25 mt-3'>Block</button>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="modal-footer">
                   <button className="btn btn-secondary" onClick={() => setShow(false)}>Close</button>
+                   
                 </div>
               </div>
             </div>

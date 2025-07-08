@@ -57,21 +57,27 @@ export default function SubscriptionDetail() {
       duration: "6 Months",
       paymentPrice: "₹1499",
       paymentMethod: "Google Pay",
+      transection_id : "110023432222",
       subscriptionDate: "2025-02-01",
       expiryDate: "2025-08-01",
-      aadhaar: "123456789012"
+      aadhaar: "123456789012",
+      isActive : true,
+      phone : "9989098765"
     },
     {
       serial: 2,
-      name: "Meera Jain",
+      name: "Lakshita pal",
       packageName: "Luxuary",
       packagePrice: "₹499",
       duration: "1 Month",
       paymentPrice: "₹499",
       paymentMethod: "Paytm",
+      transection_id : "110023432222",
       subscriptionDate: "2025-06-01",
       expiryDate: "2025-07-01",
-      aadhaar: "987654321098"
+      aadhaar: "987654321098",
+         isActive : true,
+      phone : "9989098765"
     },
 
     {
@@ -82,9 +88,12 @@ export default function SubscriptionDetail() {
         duration: "1 Month",
         paymentPrice: "2499",
         paymentMethod: "Paytm",
+        transection_id : "110023432222",
         subscriptionDate: "2025-01-01",
         expiryDate: "2026-01-01",
-        aadhaar: "9876543278790"
+        aadhaar: "9876543278790",
+           isActive : true,
+      phone : "9989098765"
       },
       {
         serial: 4,
@@ -94,9 +103,13 @@ export default function SubscriptionDetail() {
         duration: "1 Month",
         paymentPrice: "₹499",
         paymentMethod: "Paytm",
+        transection_id : "110023432222",
         subscriptionDate: "2025-09-01",
         expiryDate: "2025-02-05",
-        aadhaar: "987654354324"
+        aadhaar: "987654354324",
+           isActive : true,
+      phone : "9989098765"
+
       },
       {
         serial: 5,
@@ -106,9 +119,12 @@ export default function SubscriptionDetail() {
         duration: "3 Month",
         paymentPrice: "1999",
         paymentMethod: "PhonePay",
+        transection_id : "110023432222",
         subscriptionDate: "2025-09-01",
         expiryDate: "2025-02-05",
-        aadhaar: "987654354324"
+        aadhaar: "987654354324",
+           isActive : true,
+      phone : "9989098765"
       },
 
 
@@ -130,6 +146,11 @@ export default function SubscriptionDetail() {
       accessor: "paymentMethod",
       Filter: PaymentMethodFilter
     },
+    {
+      Header: "Transection Id",
+      accessor: "transection_id",
+      Filter: PaymentMethodFilter
+    },
     { Header: "Subscription Date", accessor: "subscriptionDate", Filter: DefaultColumnFilter },
     { Header: "Expiry Date", accessor: "expiryDate", Filter: DefaultColumnFilter },
     {
@@ -137,6 +158,35 @@ export default function SubscriptionDetail() {
       accessor: "aadhaar",
       Filter: DefaultColumnFilter,
       Cell: ({ value }) => maskAadhaar(value)
+    },
+    {
+      Header: "Phone Number",
+      accessor: "phone",
+      Filter: DefaultColumnFilter
+    },
+    {
+      Header: "Status",
+      accessor: "isActive",
+      disableFilters: true,
+      Cell: ({ row, value }) => {
+        const [active, setActive] = React.useState(value);
+    
+        return (
+          <button
+            onClick={() => setActive(prev => !prev)}
+            style={{
+              padding: '6px 12px',
+              backgroundColor: active ? '#28a745' : '#dc3545',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer'
+            }}
+          >
+            {active ? 'Active' : 'Inactive'}
+          </button>
+        );
+      }
     }
   ], []);
 
@@ -219,6 +269,7 @@ export default function SubscriptionDetail() {
       </div>
 
       {/* Table */}
+      <div style={{ overflowX: 'auto' }}>
       <table
         {...getTableProps()}
         style={{
@@ -321,7 +372,7 @@ export default function SubscriptionDetail() {
           })}
         </tbody>
       </table>
-
+      </div>
       {/* Pagination */}
       <div style={{ marginTop: "20px", display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
         <button className='btn btn-secondary' onClick={() => gotoPage(0)} disabled={!canPreviousPage}>⏮ First</button>
