@@ -12,10 +12,11 @@ import ChatDetails from '../../Pages/MessageUsers/ChatDetails'
 import SubscriptionDetail from '../../Pages/SubscriptionDetails/page'
 import ReportedUsers from '../../Pages/ReportedUsers/page'
 import CoupleMeetingsTable from '../../Pages/MeetingRecordsTable/page'
-
-// import AllCategory from '../../Pages/Category/AllCategory'
-// import AddCategory from '../../Pages/Category/AddCategory'
-// import EditCategory from '../../Pages/Category/EditCategory'
+import Details from '../../Pages/Banner/detail'
+import EarnMembers from '../../Pages/EarnMembers/page' // Assuming this is the correct import path
+import EditMembers from  '../../Pages/EarnMembers/EditMembers'
+import EditSubscription from '../../Pages/EditSubscription/page'
+import AllSubscription from '../../Pages/EditSubscription/AllSubscription'
 
 export default function Home() {
   const login = sessionStorage.getItem("login");
@@ -44,7 +45,12 @@ export default function Home() {
           <Route path="/chat/:user1/:user2" element={<ChatDetails/>} />    
           <Route path="/subscription-details" element={<SubscriptionDetail/>}/>    
           <Route path="/reported-list" element={<ReportedUsers/>}/>    
-          <Route path="/meetingrecord-table" element={<CoupleMeetingsTable/>}/>    
+          <Route path="/meetingrecord-table" element={<CoupleMeetingsTable/>}/> 
+          <Route path="/banner/details"  element={<Details />} />
+          <Route path="/earn-members"  element={<EarnMembers/>} />
+          <Route path="/edit-members"  element={<EditMembers />} /> 
+          <Route path="/subscriptions"  element={<EditSubscription/>} /> 
+          <Route path="/all-subscriptions"  element={<AllSubscription/>} /> 
           
           {/* Uncomment when components are ready */}
           {/* <Route path="/all-category" element={<AllCategory />} />
