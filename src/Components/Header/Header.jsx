@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Header.css'
 
-const Header = () => {
+const  Header = () => {
   const [sidetoggle,setSideToggle] = useState(false)
 
   const handletoggleBtn =()=>{
@@ -38,15 +38,15 @@ const Header = () => {
           <ul>
             <li><Link to="/dashboard"  onClick={handletoggleBtn}> <i className="fa-solid fa-gauge"></i> Dashboard</Link></li>
             <li><Link to="/banner" onClick={handletoggleBtn}> <i className="fa-regular fa-images"></i>Banners</Link></li>
-            <li><Link to="/all-category" onClick={handletoggleBtn}> <i className="fa-solid fa-tag"></i> Category</Link></li>
-            <li><Link to="/all-tags" onClick={handletoggleBtn}> <i className="fa-solid fa-tag"></i> Subcategory</Link></li>
-            <li><Link to="/all-products" onClick={handletoggleBtn}> <i className="fa-solid fa-layer-group"></i> Product</Link></li>
+            <li><Link to="/earn-members" onClick={handletoggleBtn}> <i className="fa-solid fa-tag"></i>EarnMembers</Link></li>
+            <li><Link to="/subscriptions" onClick={handletoggleBtn}> <i className="fa-solid fa-tag"></i>Edit Subcription</Link></li>
+            {/* <li><Link to="/all-products" onClick={handletoggleBtn}> <i className="fa-solid fa-layer-group"></i> Product</Link></li>
             <li><Link to="/all-blog" onClick={handletoggleBtn}> <i className="fa-solid fa-layer-group"></i> Blog</Link></li>
                 
            
             <li><Link to="/all-shop-banners" onClick={handletoggleBtn}> <i className="fa-brands fa-unsplash"></i>Contact Query</Link></li>
             <li><Link to="/all-voucher" onClick={handletoggleBtn}> <i className="fa-solid fa-layer-group"></i>Enquiry Query</Link></li>
-            <li><Link to="/all-subscription-email" onClick={handletoggleBtn}> <i className="fa-solid fa-layer-group"></i>Subscription Users</Link></li>
+            <li><Link to="/all-subscription-email" onClick={handletoggleBtn}> <i className="fa-solid fa-layer-group"></i>Subscription Users</Link></li> */}
             {/* <li><Link to="/all-cart-enquiry" onClick={handletoggleBtn}> <i className="fa-solid fa-layer-group"></i> All Cart Enquiry</Link></li> */}
             {/* <li><Link to="/all-users" onClick={handletoggleBtn}> <i className="fa-solid fa-user"></i> All Users</Link></li>
             <li><Link to="/all-orders" onClick={handletoggleBtn}> <i className="fa-solid fa-truck-arrow-right"></i> Manage Orders</Link></li> */}
