@@ -27,7 +27,7 @@ const DefaultColumnFilter = ({ column: { filterValue, setFilter, Header } }) => 
 
 const data = [
   {
-    id: 1,
+    id: "Luv-1111321",
     user1: 'Aman Singh',
     user2: 'Priya Sharma',
     datetime: '2025-07-05 16:00',
@@ -40,10 +40,11 @@ const data = [
     aadhaarU1: '1234-****-9012',
     aadhaarU2: '2345-****-0123',
     liveImage: '/user.jpeg',
-    status: 'Complete'
+    status: 'Complete',
+    rating : 4.5
   },
   {
-    id: 2,
+    id: "Luv-1111321",
     user1: 'Mukesh Singh',
     user2: 'Janavi Sharma',
     datetime: '2025-08-05 16:00',
@@ -56,7 +57,8 @@ const data = [
     aadhaarU1: '1234-****-9044',
     aadhaarU2: '2345-****-0166',
     liveImage: '/user.jpeg',
-    status: 'Complete'
+    status: 'Complete',
+    rating : 3.5
   },
   // Add more data...
 ];
@@ -70,7 +72,7 @@ export default function CoupleMeetingsTable() {
   const columns = React.useMemo(() => [
     { Header: 'Meeting ID', accessor: 'id', Filter: DefaultColumnFilter },
     {
-      Header: 'User 1',
+      Header: 'Client',
       accessor: 'user1',
       Filter: DefaultColumnFilter,
       Cell: ({ value, row }) => (
@@ -114,7 +116,7 @@ export default function CoupleMeetingsTable() {
       )
     },
     {
-      Header: 'User 2',
+      Header: 'Professional',
       accessor: 'user2',
       Filter: DefaultColumnFilter,
       Cell: ({ value, row }) => (
@@ -166,6 +168,19 @@ export default function CoupleMeetingsTable() {
     { Header: 'Gender (U2)', accessor: 'genderU2', Filter: DefaultColumnFilter },
     { Header: 'Aadhaar (U1)', accessor: 'aadhaarU1', Filter: DefaultColumnFilter },
     { Header: 'Aadhaar (U2)', accessor: 'aadhaarU2', Filter: DefaultColumnFilter },
+    {
+      Header: 'Rating',
+      accessor: 'rating',
+      Filter: DefaultColumnFilter,
+      Cell: ({ value }) => (
+        <span style={{ fontWeight: 'bold', color: '#ff9800' }}>
+          {'★'.repeat(Math.floor(value))}{value % 1 ? '½' : ''}
+          <span style={{ marginLeft: '4px', color: '#555' }}>({value})</span>
+        </span>
+      )
+    },
+    
+    
     {
       Header: 'Live Image',
       accessor: 'liveImage',
