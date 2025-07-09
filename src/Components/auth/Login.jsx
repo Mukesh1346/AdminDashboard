@@ -74,7 +74,7 @@ export default function Login() {
                       type='email'
                       value={email}
                       onChange={handleEmailChange}
-                      required
+                      required 
                     />
 
                     <MDBInput

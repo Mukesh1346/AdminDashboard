@@ -1,7 +1,7 @@
 .top-head{
     z-index: 999;
     height: 4rem;
-    background: linear-gradient(to right, #E8385C, #FE8E73);
+    background:#06021d;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -51,7 +51,8 @@
     position: fixed;
     top: 4rem;
     left: 0;
-    background: linear-gradient(to right, #E8385C, #FE8E73);
+       background: #06021d ;
+
     /* background: #9ae5f8; */
     height: 100%;
     overflow-y: auto;

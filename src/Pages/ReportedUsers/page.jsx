@@ -159,6 +159,7 @@ export default function ReportedUsers() {
 
   return (
     <div style={{ margin: "96px 0px 0px 261px", width: "82%" }}>
+       <h3 className="text-center text-primary"> REPORTED USERS DETAILS</h3>
       {/* Header Controls */}
       <div style={{ marginBottom: "20px" }}>
         <button

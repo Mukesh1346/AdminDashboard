@@ -7,8 +7,9 @@ import {
 } from 'react-table';
 import { useNavigate } from 'react-router-dom';
 
-// Default filter for text input
-const DefaultColumnFilter = ({ column: { filterValue, setFilter, Header } }) => (
+const DefaultColumnFilter = ({
+  column: { filterValue, setFilter, Header }
+}) => (
   <input
     style={{
       width: '100%',
@@ -23,8 +24,9 @@ const DefaultColumnFilter = ({ column: { filterValue, setFilter, Header } }) => 
   />
 );
 
-// Dropdown filter for Payment Method
-const PaymentMethodFilter = ({ column: { filterValue, setFilter } }) => (
+const GenderColumnFilter = ({
+  column: { filterValue, setFilter }
+}) => (
   <select
     value={filterValue || ''}
     onChange={e => setFilter(e.target.value || undefined)}
@@ -37,167 +39,82 @@ const PaymentMethodFilter = ({ column: { filterValue, setFilter } }) => (
     }}
   >
     <option value="">All</option>
-    <option value="Google Pay">Google Pay</option>
-    <option value="PhonePay">PhonePay</option>
-    <option value="Paytm">Paytm</option>
-    <option value="UPI">UPI</option>
-    <option value="Card">Card</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
   </select>
 );
 
-export default function SubscriptionDetail() {
+export default function Banner() {
   const navigate = useNavigate();
 
-  const data = React.useMemo(() => [
-    {
-      serial: "Luv-116341",
-      name: "Suraj Nath",
-      packageName: "Platinum",
-      packagePrice: "₹1499",
-      duration: "6 Months",
-      paymentPrice: "₹1499",
-      paymentMethod: "Google Pay",
-      transection_id : "110023432222",
-      subscriptionDate: "2025-02-01",
-      expiryDate: "2025-08-01",
-      aadhaar: "123456789012",
-      isActive : true,
-      phone : "9989098765"
-    },
-    {
-      serial: "Luv-116342",
-      name: "Lakshita pal",
-      packageName: "Luxuary",
-      packagePrice: "₹499",
-      duration: "1 Month",
-      paymentPrice: "₹499",
-      paymentMethod: "Paytm",
-      transection_id : "110023432222",
-      subscriptionDate: "2025-06-01",
-      expiryDate: "2025-07-01",
-      aadhaar: "987654321098",
-         isActive : true,
-      phone : "9989098765"
-    },
+  const data = React.useMemo(
+    () => [
+      { serial: 1, name: "Suraj", age: 69, gender: "Male", marital: "Single" },
+      { serial: 2, name: "Anna Smith", age: 34, gender: "Female", marital: "Married" },
+      { serial: 3, name: "Raj Patel", age: 30, gender: "Male", marital: "Married" },
+      { serial: 4, name: "John Doe", age: 28, gender: "Male", marital: "Single" },
+      { serial: 5, name: "Lisa Ray", age: 25, gender: "Female", marital: "Single" },
+      { serial: 6, name: "Amit Sharma", age: 32, gender: "Male", marital: "Married" },
+      { serial: 7, name: "Meera Jain", age: 27, gender: "Female", marital: "Single" },
+      { serial: 8, name: "Karan Singh", age: 35, gender: "Male", marital: "Single" },
+      { serial: 9, name: "Neha Verma", age: 29, gender: "Female", marital: "Married" },
+      { serial: 10, name: "Deepak Das", age: 31, gender: "Male", marital: "Single" },
+      { serial: 11, name: "Suraj", age: 69, gender: "Male", marital: "Single" },
+      { serial: 12, name: "Anna Smith", age: 34, gender: "Female", marital: "Married" },
+      { serial: 13, name: "Raj Patel", age: 30, gender: "Male", marital: "Married" },
+      { serial: 14, name: "John Doe", age: 28, gender: "Male", marital: "Single" },
+      { serial: 15, name: "Lisa Ray", age: 25, gender: "Female", marital: "Single" },
+      { serial: 16, name: "Amit Sharma", age: 32, gender: "Male", marital: "Married" },
+      { serial: 17, name: "Meera Jain", age: 27, gender: "Female", marital: "Single" },
+      { serial: 18, name: "Karan Singh", age: 35, gender: "Male", marital: "Single" },
+      { serial: 19, name: "Neha Verma", age: 29, gender: "Female", marital: "Married" },
+      { serial: 20, name: "Deepak Das", age: 31, gender: "Male", marital: "Single" },
+    ],
+    []
+  );
 
-    {
-        serial: "Luv-116343",
-        name: "Mukesh Singh",
-        packageName: "Luxuary",
-        packagePrice: "₹2499",
-        duration: "1 Month",
-        paymentPrice: "2499",
-        paymentMethod: "Paytm",
-        transection_id : "110023432222",
-        subscriptionDate: "2025-01-01",
-        expiryDate: "2026-01-01",
-        aadhaar: "9876543278790",
-           isActive : true,
-      phone : "9989098765"
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: "Serial No.",
+        accessor: "serial",
+        Filter: DefaultColumnFilter
       },
       {
-        serial: "Luv-116344",
-        name: "Laxita Nath",
-        packageName: "Luxuary",
-        packagePrice: "₹2109",
-        duration: "1 Month",
-        paymentPrice: "₹499",
-        paymentMethod: "Paytm",
-        transection_id : "110023432222",
-        subscriptionDate: "2025-09-01",
-        expiryDate: "2025-02-05",
-        aadhaar: "987654354324",
-           isActive : true,
-      phone : "9989098765"
-
+        Header: "Name",
+        accessor: "name",
+        Filter: DefaultColumnFilter
       },
       {
-        serial: "Luv-116345",
-        name: "Sana Khan",
-        packageName: "Luxuary",
-        packagePrice: "₹1999",
-        duration: "3 Month",
-        paymentPrice: "1999",
-        paymentMethod: "PhonePay",
-        transection_id : "110023432222",
-        subscriptionDate: "2025-09-01",
-        expiryDate: "2025-02-05",
-        aadhaar: "987654354324",
-           isActive : true,
-      phone : "9989098765"
+        Header: "Age",
+        accessor: "age",
+        Filter: DefaultColumnFilter
       },
-
-
-
-    // Add more rows here
-  ], []);
-
-  const maskAadhaar = num => `****-****-${num.slice(-4)}`;
-
-  const columns = React.useMemo(() => [
-    { Header: "Serial No.", accessor: "serial", Filter: DefaultColumnFilter },
-    { Header: "User Name", accessor: "name", Filter: DefaultColumnFilter },
-    { Header: "Package Name", accessor: "packageName", Filter: DefaultColumnFilter },
-    { Header: "Package Price", accessor: "packagePrice", Filter: DefaultColumnFilter },
-    { Header: "Duration", accessor: "duration", Filter: DefaultColumnFilter },
-    { Header: "Payment Price", accessor: "paymentPrice", Filter: DefaultColumnFilter },
-    {
-      Header: "Payment Method",
-      accessor: "paymentMethod",
-      Filter: PaymentMethodFilter
-    },
-    {
-      Header: "Transection Id",
-      accessor: "transection_id",
-      Filter: PaymentMethodFilter
-    },
-    { Header: "Subscription Date", accessor: "subscriptionDate", Filter: DefaultColumnFilter },
-    { Header: "Expiry Date", accessor: "expiryDate", Filter: DefaultColumnFilter },
-    {
-      Header: "Aadhaar Number",
-      accessor: "aadhaar",
-      Filter: DefaultColumnFilter,
-      Cell: ({ value }) => maskAadhaar(value)
-    },
-    {
-      Header: "Phone Number",
-      accessor: "phone",
-      Filter: DefaultColumnFilter
-    },
-    {
-      Header: "Status",
-      accessor: "isActive",
-      disableFilters: true,
-      Cell: ({ row, value }) => {
-        const [active, setActive] = React.useState(value);
-    
-        return (
-          <button
-            onClick={() => setActive(prev => !prev)}
-            style={{
-              padding: '6px 12px',
-              backgroundColor: active ? '#28a745' : '#dc3545',
-              color: '#fff',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer'
-            }}
-          >
-            {active ? 'Active' : 'Inactive'}
-          </button>
-        );
+      {
+        Header: "Gender",
+        accessor: "gender",
+        Filter: GenderColumnFilter
+      },
+      {
+        Header: "Marital Status",
+        accessor: "marital",
+        Filter: DefaultColumnFilter
       }
-    }
-  ], []);
+    ],
+    []
+  );
 
-  const defaultColumn = React.useMemo(() => ({
-    Filter: DefaultColumnFilter
-  }), []);
+  const defaultColumn = React.useMemo(
+    () => ({
+      Filter: DefaultColumnFilter
+    }),
+    []
+  );
 
   const {
     getTableProps,
     getTableBodyProps,
-     headerGroups,
+    headerGroups,
     page,
     prepareRow,
     setAllFilters,
@@ -211,12 +128,13 @@ export default function SubscriptionDetail() {
     pageCount,
     setPageSize,
     state: { pageIndex, pageSize }
-  } = useTable({
-    columns,
-    data,
-    defaultColumn,
-    initialState: { pageIndex: 0, pageSize: 5 }
-  },
+  } = useTable(
+    {
+      columns,
+      data,
+      defaultColumn,
+      initialState: { pageIndex: 0, pageSize: 5 }
+    },
     useFilters,
     useSortBy,
     usePagination
@@ -226,15 +144,10 @@ export default function SubscriptionDetail() {
     setSortBy([{ id: columnId, desc: direction === "desc" }]);
   };
 
-  const isExpired = (expiryDate) => {
-    const today = new Date();
-    return new Date(expiryDate) < today;
-  };
-
   return (
     <div style={{ margin: "96px 0px 0px 261px", width: "82%" }}>
-       <h3 className="text-center text-primary">  USERS SUBSCRIPTION DETAILS</h3>
-      {/* Header Controls */}
+      {/* Back & Reset Buttons */}
+      <h3>Subscription & Payment</h3>
       <div style={{ marginBottom: "20px" }}>
         <button
           onClick={() => navigate(-1)}
@@ -270,7 +183,6 @@ export default function SubscriptionDetail() {
       </div>
 
       {/* Table */}
-      <div style={{ overflowX: 'auto' }}>
       <table
         {...getTableProps()}
         style={{
@@ -347,13 +259,12 @@ export default function SubscriptionDetail() {
         <tbody {...getTableBodyProps()}>
           {page.map((row, i) => {
             prepareRow(row);
-            const rowData = row.original;
             return (
               <tr
                 key={row.id}
                 {...row.getRowProps()}
                 style={{
-                  backgroundColor: isExpired(rowData.expiryDate) ? "#ffe6e6" : i % 2 === 0 ? "#fff" : "#f9f9f9"
+                  backgroundColor: i % 2 === 0 ? "#fff" : "#f9f9f9"
                 }}
               >
                 {row.cells.map(cell => (
@@ -362,7 +273,7 @@ export default function SubscriptionDetail() {
                     {...cell.getCellProps()}
                     style={{
                       border: "1px solid #ddd",
-                      padding: "5px"
+                      padding: "10px"
                     }}
                   >
                     {cell.render("Cell")}
@@ -373,22 +284,26 @@ export default function SubscriptionDetail() {
           })}
         </tbody>
       </table>
-      </div>
-      {/* Pagination */}
+
+      {/* Pagination Controls */}
       <div style={{ marginTop: "20px", display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
         <button className='btn btn-secondary' onClick={() => gotoPage(0)} disabled={!canPreviousPage}>⏮ First</button>
         <button className='btn btn-secondary' onClick={() => previousPage()} disabled={!canPreviousPage}>← Prev</button>
         <button className='btn btn-secondary' onClick={() => nextPage()} disabled={!canNextPage}>Next →</button>
         <button className='btn btn-secondary' onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>Last ⏭</button>
 
-        <span>| Page <strong>{pageIndex + 1} of {pageOptions.length}</strong></span>
+        <span>
+          | Page <strong>{pageIndex + 1} of {pageOptions.length}</strong>
+        </span>
 
         <select
           value={pageSize}
           onChange={e => setPageSize(Number(e.target.value))}
         >
           {[5, 10, 20, 50].map(size => (
-            <option key={size} value={size}>Show {size}</option>
+            <option key={size} value={size}>
+              Show {size}
+            </option>
           ))}
         </select>
       </div>

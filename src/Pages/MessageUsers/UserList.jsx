@@ -88,7 +88,7 @@ export default function UserTable() {
               color: '#fff',
               border: 'none',
               borderRadius: '4px',
-              cursor: 'pointer'
+              cursor: 'pointer'  
             }}
           >
             Messages
@@ -138,6 +138,7 @@ export default function UserTable() {
 
   return (
     <div style={{ margin: "96px 0px 0px 261px", width: "82%" }}>
+      <h3 className="text-center text-primary"> ALL USERS MESSAGES</h3>
       <div style={{ marginBottom: "20px" }}>
         <button onClick={() => navigate(-1)} style={{
           padding: "8px 16px", backgroundColor: "#007bff", color: "#fff",
