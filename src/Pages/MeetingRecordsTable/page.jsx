@@ -251,6 +251,7 @@ export default function CoupleMeetingsTable() {
 
   return (
     <section style={{ margin: "96px 0px 0px 261px", width: "82%" }}>
+       <h3 className="text-center text-primary">  USERS MEETING</h3>
       <div style={{ padding: '20px' }}>
         {/* Header Buttons */}
         <div style={{ marginBottom: "20px" }}>

@@ -51,7 +51,7 @@ export default function Conversations() {
             <th style={thStyle}>Aadhaar No</th>
             <th style={thStyle}>Status</th>
             <th style={thStyle}>Actions</th>
-            <th style={thStyle}>Block</th>
+            {/* <th style={thStyle}>Block</th> */}
       
           </tr>
         </thead>
@@ -63,15 +63,16 @@ export default function Conversations() {
                 <td style={tdStyle}>{partner?.name}</td>
                 <td style={tdStyle}>{partner?.aadhaar}</td>
                 <td style={tdStyle}>
-                <button
-                    onClick={() => toggleActive(partnerId)}
-                    style={{
-                      ...buttonStyleRed,
-                      marginLeft: '10px'
-                    }}
-                  >
-                    {activeStatus[partnerId] ? 'Deactivate' : 'Activate'}
-                  </button>
+               <button
+  onClick={() => toggleActive(partnerId)}
+  style={{
+    ...buttonStyleRed,
+    marginLeft: '10px',
+    backgroundColor: activeStatus[partnerId] ?  '#dc3545'  :'#ffc107'
+  }}
+>
+  {activeStatus[partnerId] ? 'Chat Deactivate' : 'Chat Activate'}
+</button>
                 </td>
                 <td style={tdStyle}>
                   <button
@@ -82,11 +83,11 @@ export default function Conversations() {
                   </button>
                   
                 </td>
-                 <td style={tdStyle}>
+                 {/* <td style={tdStyle}>
                       <button className='btn btn-primary'>
                         Block
                       </button>
-                 </td>
+                 </td> */}
 
               </tr>
             );

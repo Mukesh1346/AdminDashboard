@@ -182,6 +182,8 @@ export default function Page() {
 
   return (
     <div style={{ margin: '96px 0px 0px 261px', width: '82%' }}>
+                          <h3 className="text-primary text-center">ALL USERS LIST</h3>
+                        
       <div style={{ marginBottom: '20px', display: 'flex', gap: '10px' }}>
         <button onClick={() => navigate(-1)} style={{ padding: '8px 16px', backgroundColor: '#343a40', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>← Back</button>
         <button onClick={() => { setAllFilters([]); setSortBy([]); gotoPage(0); }} style={{ padding: '8px 16px', backgroundColor: '#28a745', color: '#fff', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>Reset Filters</button>

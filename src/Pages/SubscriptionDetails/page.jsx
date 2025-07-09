@@ -50,7 +50,7 @@ export default function SubscriptionDetail() {
 
   const data = React.useMemo(() => [
     {
-      serial: 1,
+      serial: "Luv-116341",
       name: "Suraj Nath",
       packageName: "Platinum",
       packagePrice: "₹1499",
@@ -65,7 +65,7 @@ export default function SubscriptionDetail() {
       phone : "9989098765"
     },
     {
-      serial: 2,
+      serial: "Luv-116342",
       name: "Lakshita pal",
       packageName: "Luxuary",
       packagePrice: "₹499",
@@ -81,7 +81,7 @@ export default function SubscriptionDetail() {
     },
 
     {
-        serial: 3,
+        serial: "Luv-116343",
         name: "Mukesh Singh",
         packageName: "Luxuary",
         packagePrice: "₹2499",
@@ -96,7 +96,7 @@ export default function SubscriptionDetail() {
       phone : "9989098765"
       },
       {
-        serial: 4,
+        serial: "Luv-116344",
         name: "Laxita Nath",
         packageName: "Luxuary",
         packagePrice: "₹2109",
@@ -112,7 +112,7 @@ export default function SubscriptionDetail() {
 
       },
       {
-        serial: 5,
+        serial: "Luv-116345",
         name: "Sana Khan",
         packageName: "Luxuary",
         packagePrice: "₹1999",
@@ -233,6 +233,7 @@ export default function SubscriptionDetail() {
 
   return (
     <div style={{ margin: "96px 0px 0px 261px", width: "82%" }}>
+       <h3 className="text-center text-primary">  USERS SUBSCRIPTION DETAILS</h3>
       {/* Header Controls */}
       <div style={{ marginBottom: "20px" }}>
         <button
@@ -361,7 +362,7 @@ export default function SubscriptionDetail() {
                     {...cell.getCellProps()}
                     style={{
                       border: "1px solid #ddd",
-                      padding: "10px"
+                      padding: "5px"
                     }}
                   >
                     {cell.render("Cell")}

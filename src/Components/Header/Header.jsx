@@ -46,7 +46,7 @@ const  Header = () => {
             <li><Link to="/meetingrecord-table" onClick={handletoggleBtn}> <i className="fa-solid fa-folder-open"></i>Meeting Record</Link></li>
             <li><Link to="/subscription-details" onClick={handletoggleBtn}> <i className="fa-solid fa-credit-card"></i>Subscription & Payment</Link></li>
             <li><Link to="/reported-list" onClick={handletoggleBtn}> <i className="fa-solid fa-heart"></i>Reported Profiles</Link></li>
-            <li><Link to="/premium-partners" onClick={handletoggleBtn}> <i className="fa-solid fa-heart"></i>Premium Partner</Link></li>
+            <li><Link to="/premium-partner" onClick={handletoggleBtn}> <i className="fa-solid fa-heart"></i>Premium Partner</Link></li>
             {/* <li><Link to="/all-products" onClick={handletoggleBtn}> <i className="fa-solid fa-layer-group"></i> Product</Link></li>
             <li><Link to="/all-blog" onClick={handletoggleBtn}> <i className="fa-solid fa-layer-group"></i> Blog</Link></li>
                 

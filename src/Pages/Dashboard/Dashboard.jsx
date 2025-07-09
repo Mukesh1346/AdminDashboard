@@ -17,7 +17,7 @@ export default function Dashboard() {
     { label: 'Messages', value: messages, icon: <FaComments />, link: '/message-users' },
     { label: 'Meeting Records', value: connections, icon: <FaUserCheck />, link: '/meetingrecord-table' },
     { label: 'Subscriptions & Payments', value: subscriptions, icon: <FaImage />, link: '/subscription-details' },
-    { label: 'Notifications', value: notifications, icon: <FaUserPlus />, link: '/new-signups' },
+    { label: 'Notifications', value: notifications, icon: <FaUserPlus />, link: '/notifications' },
     { label: 'Reported Profiles', value: reported, icon: <FaHeart />, link: '/reported-list' },
   ];
   

@@ -17,6 +17,8 @@ import EarnMembers from '../../Pages/EarnMembers/page' // Assuming this is the c
 import EditMembers from  '../../Pages/EarnMembers/EditMembers'
 import EditSubscription from '../../Pages/EditSubscription/page'
 import AllSubscription from '../../Pages/EditSubscription/AllSubscription'
+import Notifications from  '../../Pages/Notifications/page'
+import PremiumPartner from  '../../Pages/PremiumPartners/Page'
 
 export default function Home() {
   const login = sessionStorage.getItem("login");
@@ -51,6 +53,8 @@ export default function Home() {
           <Route path="/edit-members"  element={<EditMembers />} /> 
           <Route path="/subscriptions"  element={<EditSubscription/>} /> 
           <Route path="/all-subscriptions"  element={<AllSubscription/>} /> 
+          <Route path="/notifications"  element={<Notifications/>} /> 
+          <Route path="/premium-partner"  element={<PremiumPartner/>} /> 
           
           {/* Uncomment when components are ready */}
           {/* <Route path="/all-category" element={<AllCategory />} />
