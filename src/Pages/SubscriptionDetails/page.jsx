@@ -62,7 +62,8 @@ export default function SubscriptionDetail() {
       expiryDate: "2025-08-01",
       aadhaar: "123456789012",
       isActive : true,
-      phone : "9989098765"
+      phone : "9989098765",
+      payment: "Successful"    
     },
     {
       serial: "Luv-116342",
@@ -77,7 +78,8 @@ export default function SubscriptionDetail() {
       expiryDate: "2025-07-01",
       aadhaar: "987654321098",
          isActive : true,
-      phone : "9989098765"
+      phone : "9989098765",
+      payment: "Successful"  
     },
 
     {
@@ -93,7 +95,9 @@ export default function SubscriptionDetail() {
         expiryDate: "2026-01-01",
         aadhaar: "9876543278790",
            isActive : true,
-      phone : "9989098765"
+      phone : "9989098765",
+      payment: "Pending"  
+
       },
       {
         serial: "Luv-116344",
@@ -108,7 +112,8 @@ export default function SubscriptionDetail() {
         expiryDate: "2025-02-05",
         aadhaar: "987654354324",
            isActive : true,
-      phone : "9989098765"
+      phone : "9989098765",
+      payment: "Successful"  
 
       },
       {
@@ -124,7 +129,8 @@ export default function SubscriptionDetail() {
         expiryDate: "2025-02-05",
         aadhaar: "987654354324",
            isActive : true,
-      phone : "9989098765"
+      phone : "9989098765",
+      payment: "Pending"
       },
 
 
@@ -162,6 +168,12 @@ export default function SubscriptionDetail() {
     {
       Header: "Phone Number",
       accessor: "phone",
+      Filter: DefaultColumnFilter
+    },
+    
+    {
+      Header: "Payment Status",
+      accessor: "payment",
       Filter: DefaultColumnFilter
     },
     {
