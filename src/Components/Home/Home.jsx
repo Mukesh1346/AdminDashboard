@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Route, Routes, Navigate } from 'react-router-dom'
 
 import Login from '../auth/Login'
@@ -19,8 +19,14 @@ import EditSubscription from '../../Pages/EditSubscription/page'
 import AllSubscription from '../../Pages/EditSubscription/AllSubscription'
 import Notifications from  '../../Pages/Notifications/page'
 import PremiumPartner from  '../../Pages/PremiumPartners/Page'
+import RefundDetails from '../../Pages/RefundDetails/page'
+import ReferralDetails from '../../Pages/ReferralDetails/page'
 
 export default function Home() {
+  const [counter , setCounter] = useState(4);
+
+ 
+
   const login = sessionStorage.getItem("login");
 
   if (!login) {
@@ -32,10 +38,20 @@ export default function Home() {
     );
   }
 
+    
+ const countNotification = ( value, unread )=>{
+     console.log( "New value ",value)
+     setCounter(value)
+   
+ }
+
+
+
+
   // If logged in, show header and app routes
   return (
     <>
-      <Header />
+      <Header  counter={counter}/>
       <div className="rightside">
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" />} />
@@ -53,8 +69,10 @@ export default function Home() {
           <Route path="/edit-members"  element={<EditMembers />} /> 
           <Route path="/subscriptions"  element={<EditSubscription/>} /> 
           <Route path="/all-subscriptions"  element={<AllSubscription/>} /> 
-          <Route path="/notifications"  element={<Notifications/>} /> 
+          <Route path="/notifications"  element={<Notifications counter={counter}  countNotification={countNotification}/>} /> 
           <Route path="/premium-partner"  element={<PremiumPartner/>} /> 
+          <Route path="/refund-detail"  element={<RefundDetails/>} /> 
+          <Route path="/referral-detail"  element={<ReferralDetails/>} /> 
           
           {/* Uncomment when components are ready */}
           {/* <Route path="/all-category" element={<AllCategory />} />

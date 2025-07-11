@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { IoNotifications } from "react-icons/io5";
 import './Header.css'
 
-const  Header = () => {
+const  Header = (props) => {
   const [sidetoggle,setSideToggle] = useState(false)
 
   const handletoggleBtn =()=>{
@@ -25,6 +26,7 @@ const  Header = () => {
             </div>
           </div>
           <div className="left ">
+        <div>  <IoNotifications className='fs-4' />  <sup>{props.counter}</sup>  </div>
             <a href="/" className='bg-theme' target="_blank">
              
             Our Website,

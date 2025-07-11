@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const allNotifications = [
@@ -60,10 +60,11 @@ const allNotifications = [
   },
 ];
 
-export default function NotificationPage() {
+export default function NotificationPage(props) {
   const [filter, setFilter] = useState('all');
   const [typeFilter, setTypeFilter] = useState('all');
 
+console.log(props)
   const navigate = useNavigate();
 
   const filteredNotifications = allNotifications.filter((note) => {
@@ -79,7 +80,7 @@ export default function NotificationPage() {
   const handleNotificationClick = (note) => {
     switch (note.type) {
       case 'signup':
-        navigate(`/users`); // example: user detail page
+        navigate(`/showUsers`); // example: user detail page
         break;
       case 'profile_update':
         navigate(`/showUsers`);
@@ -91,7 +92,7 @@ export default function NotificationPage() {
         navigate(`/reported-list`);
         break;
       case 'message':
-        navigate(`/message-users`);
+        navigate(`/message-users`); 
         break;
       case 'kyc':
         navigate(`/kyc/${note.id}`);
@@ -104,7 +105,12 @@ export default function NotificationPage() {
     }
   };
 
+  useEffect(() => {
+    const unreadCount = allNotifications.filter(note => !note.read).length;
+    props.countNotification(0 ,unreadCount);
 
+  },);
+  
 
 
 
@@ -117,6 +123,14 @@ export default function NotificationPage() {
             <i className="bi bi-bell-fill me-2 text-primary"></i>
             Notifications
           </h2> */}
+{/* 
+<button onClick={() => {
+  const unreadCount = allNotifications.filter(note => !note.read).length;
+  props.countNotification(unreadCount);
+}}>
+  Show Unread Count
+</button>
+ */}
 
           {/* Filters */}
           <div className="d-flex gap-3 mb-4">
@@ -125,7 +139,7 @@ export default function NotificationPage() {
                 type="button"
                 className={`btn btn-sm ${filter === 'all' ? 'btn-primary' : 'btn-outline-primary'}`}
                 onClick={() => setFilter('all')}
-              >
+              > 
                 All
               </button>
               <button
